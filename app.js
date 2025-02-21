@@ -10,7 +10,7 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://JackEden:UXPguqFG5vbKadz2@cluster0.gvxbvwb.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://JackEden:bcWZd7zhdZEOLo5o@cluster0.gvxbvwb.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

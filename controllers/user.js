@@ -3,6 +3,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.signup = (req, res, next) => {
+
+    if (!req.body.email || req.body.email.indexOf('@') === -1) {
+        return res.status(400).json({ error: 'L\'adresse e-mail est invalide.' });
+    }
+
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({
@@ -16,7 +21,7 @@ exports.signup = (req, res, next) => {
       .catch(error => res.status(500).json({ error }));
   };
 
-  exports.login = (req, res, next) => {
+exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
@@ -39,4 +44,4 @@ exports.signup = (req, res, next) => {
                 .catch(error => res.status(500).json({ error }));
         })
         .catch(error => res.status(500).json({ error }));
- };
+};
